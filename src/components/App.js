@@ -7,7 +7,8 @@ const API = "http://localhost:3001/sushis";
 function App() {
   const [sushiList, setSushiList] = useState([])
   const [eatenSushi, setEatenSushi] = useState([])
-
+  const [money, setMoney] = useState(100)
+  console.log(eatenSushi);
   useEffect(() => {
     fetch(API)
     .then((resp) => resp.json())
@@ -16,28 +17,33 @@ function App() {
 
 
 
+
   function handleSushi(clickedSushi){
     console.log("you bought me!")
     const filterSushi = sushiList.filter((sushi) => sushi.id !== clickedSushi.id)
-    setSushiList(filterSushi)
-    setEatenSushi([...eatenSushi, clickedSushi])
+    // setSushiList(filterSushi)
+   
+    if(money >= clickedSushi.price){
+      setMoney((money) => money - clickedSushi.price)
+      setEatenSushi([...eatenSushi, clickedSushi])
+      setSushiList(filterSushi)
+      } else{
+         return null
+      }
   }
 
-//clicking on the sushi will clear the sushi off the list
-//the empty sushi plate will be added to the table after the sushi is clicked 
-
-//what do we need?
-//a piece of state 
-
-//where?
-//in the App component BECAUSE the data will have to be passed not only to the Sushi Container componenet(which holds the Sushi component), but also data needs to be passed down to the Table component since plate needs to be added
-
+//create conditional rendering where?
+  // if(money >= 0){
+  // setMoney((money) => money - clickedSushi.price)
+  // } else{
+  //    return null
+  // }
 
 
   return (
     <div className="app">
       <SushiContainer sushis = {sushiList} handleSushi={handleSushi}/>
-      <Table eatenSushi={eatenSushi}/>
+      <Table plates={eatenSushi} money={money} />
     </div>
   );
 }
