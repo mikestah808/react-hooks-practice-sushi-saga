@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="app">
       <SushiContainer sushis = {sushiList} handleSushi={handleSushi}/>
-      <Table />
+      <Table eatenSushi={eatenSushi}/>
     </div>
   );
 }
