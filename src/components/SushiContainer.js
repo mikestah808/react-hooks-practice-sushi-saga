@@ -16,8 +16,8 @@ function SushiContainer({ sushis, handleSushi }) {
 
   const size = 4;
   const sushiList = sushis.slice(sushiIndex, sushiIndex + size).map((sushi) => {
-    const {id, name, img_url, price} = sushi
-    return <Sushi key={id} id={id} name={name} img={img_url} price={price} handleSushi={handleSushi}/> 
+  
+    return <Sushi key={sushi.id} sushi={sushi} handleSushi={handleSushi}/> 
   })
   
 

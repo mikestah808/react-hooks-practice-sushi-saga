@@ -6,7 +6,7 @@ const API = "http://localhost:3001/sushis";
 
 function App() {
   const [sushiList, setSushiList] = useState([])
-  const [eatSushi, setEatSushi] = useState([])
+  const [eatenSushi, setEatenSushi] = useState([])
 
   useEffect(() => {
     fetch(API)
@@ -16,15 +16,11 @@ function App() {
 
 
 
-  function handleSushi(){
+  function handleSushi(clickedSushi){
     console.log("you bought me!")
-    const filterSushi = sushiList.filter((sushi) => {
-      if(!id === sushi.id){
-        return sushi
-      }
-    })
-    setEatSushi(filterSushi)
-    
+    const filterSushi = sushiList.filter((sushi) => sushi.id !== clickedSushi.id)
+    setSushiList(filterSushi)
+    setEatenSushi([...eatenSushi, clickedSushi])
   }
 
 //clicking on the sushi will clear the sushi off the list
