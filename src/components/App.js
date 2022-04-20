@@ -28,16 +28,9 @@ function App() {
       setEatenSushi([...eatenSushi, clickedSushi])
       setSushiList(filterSushi)
       } else{
-         return null
+         return alert("You don't have enough money!")
       }
   }
-
-//create conditional rendering where?
-  // if(money >= 0){
-  // setMoney((money) => money - clickedSushi.price)
-  // } else{
-  //    return null
-  // }
 
 
   return (
